@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
+    tools:context=".fragments.Users">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/users"
+        android:layout_width="match_parent"
+        android:layout_height="731dp" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="175dp"
+        android:text="Users"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/usersList"
+        android:layout_width="match_parent"
+        android:layout_height="613dp"
+        android:layout_marginTop="100dp"
+        tools:listitem="@layout/user_view_design"
+        tools:itemCount="5"/>
+
+    <Button
+        android:id="@+id/addUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:text="ADD User" />
+
+    <Button
+        android:id="@+id/sortUsersBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="30dp"
+        android:text="Filter by name" />
+
+    <Button
+        android:id="@+id/clearUsersBtn"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="275dp"
+        android:layout_marginTop="30dp"
+        android:text="Delete all" />
+
+</FrameLayout>

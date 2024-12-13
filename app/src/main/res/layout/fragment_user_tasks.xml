@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.UserTasks">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/UserTasks"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/userNameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="20dp"
+        android:text="UserName"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/deleteUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="300dp"
+        android:layout_marginTop="20dp"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/clearTasksBtn"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="90dp"
+        android:text="Delete all" />
+
+    <Button
+        android:id="@+id/addTaskBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="165dp"
+        android:layout_marginTop="90dp"
+        android:text="Add" />
+
+    <Button
+        android:id="@+id/sortTasksBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="90dp"
+        android:text="filter by date" />
+
+    <Button
+        android:id="@+id/changeUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Change" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/taskList"
+        android:layout_width="match_parent"
+        android:layout_height="440dp"
+        android:layout_marginTop="150dp"
+        tools:itemCount="0"
+        tools:listitem="@layout/task_view_design" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="104dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="590dp"
+        android:text="Back" />
+
+</FrameLayout>
