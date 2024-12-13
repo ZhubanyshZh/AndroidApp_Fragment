@@ -17,7 +17,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fragment.MainActivity
 import com.example.fragment.R
 import com.example.fragment.adapter.UserAdapter
+import com.example.fragment.client.UserServiceClient
+import com.example.fragment.config.UserServiceConfig
 import com.example.fragment.db.SQLiteHelperUsers
+import com.example.fragment.dto.UserDto
+import com.example.fragment.model.User
+import okhttp3.internal.wait
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.await
 
 class Users : Fragment() {
 
@@ -37,6 +46,7 @@ class Users : Fragment() {
 
 
         val sqliteHelperUser = SQLiteHelperUsers(requireContext())
+        val userServiceClient = UserServiceConfig.instance
 
         val usersRecyclerview: RecyclerView? = view.findViewById(R.id.usersList)
 
@@ -45,24 +55,33 @@ class Users : Fragment() {
         val clearUsersBtn: Button? = view.findViewById(R.id.clearUsersBtn)
         val deleteUserBtn: Button? = view.findViewById(R.id.deleteUserBtn)
 
-
         var isAscendingUsers = true
 
+        var users: ArrayList<User> = ArrayList()
         usersRecyclerview?.layoutManager = LinearLayoutManager(requireContext())
-        var users = sqliteHelperUser.getAllUsers()
+        userServiceClient.getUser(27).enqueue(object : Callback<UserDto> {
+            override fun onResponse(call: Call<UserDto>, response: Response<UserDto>) {
+                if (response.isSuccessful) {
+                    val userDto = response.body()
+                    if (userDto != null) {
+                        users.add(User(27, userDto.username))
+                        Log.d("Users", "User added: ${userDto.username}")
+                    } else {
+                        Log.e("Users", "Response body is null")
+                    }
+                } else {
+                    Log.e("Users", "Error: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<UserDto>, t: Throwable) {
+                Log.e("Users", "Request failed: ${t.message}")
+            }
+        })
+
 
         val userAdapter = UserAdapter(users, sqliteHelperUser)
         usersRecyclerview?.adapter = userAdapter
-
-        Log.d("Users", "add user button id: " + addUserBtn?.id.toString())
-        Log.d("Users", "sort users button id: " + sortUsersBtn?.id.toString())
-        Log.d("Users", "clear users button id: " + clearUsersBtn?.id.toString())
-        Log.d("Users", "delete user button id: " + deleteUserBtn?.id.toString())
-
-//        supportFragmentManager
-//            .beginTransaction()
-//            .replace(R.id.frame, Users.newInstance())
-//            .commit()
 
         addUserBtn?.setOnClickListener() {
             val builder = AlertDialog.Builder(requireContext())
